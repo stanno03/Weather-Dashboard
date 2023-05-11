@@ -1,0 +1,10 @@
+#fiveday {
+border: 2px;
+
+}
+
+#recent{
+    display: flex;
+    flex-flow: column;
+    place-items: flex-start;
+}
