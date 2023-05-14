@@ -13,71 +13,51 @@
 <main>
 <body>
     <header><h1 class="text-center">Weather Dashboard</h1></header>
+
+    <div id="recent" class="col-2">
+      <p>Search for a City:</p>
+  <input type="text" placeholder="Type a city here..." id ="searchbar">
+  <input class="btn" type="submit" >
+  </div>
+
+
     <div class="container">
-        <div id="current" class="row">
-            <div class="col-8">
-                <p id="City"> </p>
-                <i id="Icon"> </i>
-                <p id="Date"> </p>
-                <p id="Temp">Temperature: </p>
-                <p id="Wind">Wind Speed: </p>
-                <p id="Humidity">Humidity: </p>
+        <div class="row">
+            <div id="current"  class="col-8">
+                
             </div>
            
           </div>
-
+          
         <div id= "fiveday" class="row">
 
+         
+
         <div id= "dayOne" class="col-2">
-            <p id="DateOne"> </p>
-            <i id="IconOne"> </i>
-            <p id="TempOne">Temperature: </p>
-            <p id="WindOne">Wind Speed: </p>
-            <p id="HumidityOne">Humidity: </p>
+            
         </div>
         <div id= "dayTwo"class="col-2">
-            <p id="DateTwo"> </p>
-            <i id="IconTwo"> </i>
-            <p id="TempTwo">Temperature: </p>
-            <p id="WindTwo">Wind Speed: </p>
-            <p id="HumidityTwo">Humidity: </p>
+            
         </div>
           <div id= "dayThree"class="col-2">
-            <p id="DateThree"> </p>
-            <i id="IconThree"> </i>
-            <p id="TempThree">Temperature: </p>
-            <p id="WindThree">Wind Speed: </p>
-            <p id="HumidityThree">Humidity:  </p>
+            
         </div>
           <div id= "dayFour"class="col-2">
-            <p id="DateFour"> </p>
-            <i id="IconFour"> </i>
-            <p id="TempFour">Temperature: </p>
-            <p id="WindFour">Wind Speed: </p>
-            <p id="HumidityFour">Humidity:  </p>
+            
         </div>
           <div id= "dayFive"class="col-2">
-            <p id="DateFive"> </p>
-            <i id="IconFive"> </i>
-            <p id="TempFive">Temperature: </p>
-            <p id="WindFive">Wind Speed: </p>
-            <p id="HumidityFive">Humidity:  </p>
+            
           </div>
+
 
         </div>
       </div>
+      <div id="Recent">
+
+      </div>
       
     
-        <div id="recent">
-            <p>Search for a City:</p>
-        <input type="text" placeholder="Type a city here..." id ="searchbar">
-        <input class="btn" type="submit" >
-        </div>
-        <aside>
-          <div id = "recent">
-          
-          </div>
-        </aside>
+    
     
     <script src="https://cdn.jsdelivr.net/npm/dayjs@1/dayjs.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>

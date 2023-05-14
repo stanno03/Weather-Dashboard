@@ -8,3 +8,8 @@ border: 5px, solid;
 #current{
     justify-content: flex-end;
 }
+
+#Recent{
+    display: flex;
+    flex-direction: column;
+}
