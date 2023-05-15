@@ -92,30 +92,72 @@ function weatherCall(cityName){
          })
      }
 
-function saveCity(cityName){
+// using geolocation to retrieve the users lat/lon 
+// function displayCurrentCity(){
     
-    localStorage.setItem("city", cityName)
-}
 
-function getCity(cityName){
-    localStorage.getItem()
-}
+//     const success = (position) => { 
+//      const lat = position.coords.latitude
+//      const lon = position.coords.longitude
+
+//      fetch('https://api.openweathermap.org/data/2.5/weather?units=metric&lat=' + lat +  '&lon=' + lon + '&appid=c9b09d7b9d02160b7088c80cf4c4911d')
+//      .then(res => res.json())
+//      .then( data => 
+//          {
+//               let weatherIcon = data.weather.icon
+//               console.log(weatherIcon)
+  
+        
+
+//              let currentWeatherDiv = 
+//              '<p class="p" id="City">' + data.name +  '</p>'+
+//              '<img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png"></img>'+
+//              '<p class="p" id="Date">' + dayjs.unix(data.dt).format('DD MM YYYY')  +'</p>'+
+//              '<p class="p"id="Temp">'+ "Temp: " + data.main.temp + " &deg;" + "C" +'</p>' +
+//              '<p class="p" id="Wind">'+ "Wind Speed: " + data.wind.speed + " KM/H" +'</p>' +
+//              '<p class="p" id="Humidity">'+ "Humidity: " + data.main.humidity + " %"+'</p>' 
+
+//              $("#current").append(currentWeatherDiv)
+//      })
+
+
+
+//       };
+      
+//       const error= (error) => {
+        
+//       };
+
+   
+//       navigator.geolocation.getCurrentPosition(success, error)
+      
+      
+     
+// }
 
 function displayRecent(){
+    
+    for(let i = 0; i < localStorage.length; i++){
+        let savedCity = localStorage.getItem(localStorage.key(i))
+        let displaySaved ='<button type="submit" class="btn btn-primary btn-lg col-2">'+ savedCity +'</button>'
+        $("#Recent").append(displaySaved);
+    }
+        
+   
+    
 
 }
 
 function addCity(cityName){
     let cityExists = false;
-        for(let i = 0; i < searchedCityList.length; i ++){
-            if(cityName === searchedCityList[i]){
+        for(let i = 0; i < localStorage.length; i ++){
+            if(cityName === localStorage.getItem(localStorage.key(i))){
                 cityExists = true;
               break;
             } 
         } 
         if(!cityExists){
-            searchedCityList.push(cityName);
-            localStorage.setItem("city", cityName)
+            localStorage.setItem("city", cityName);
             let cityButton = '<button type="submit" class="btn btn-primary btn-lg col-2">'+ cityName +'</button>'
             $("#Recent").append(cityButton);
         }
@@ -123,7 +165,10 @@ function addCity(cityName){
 
 $(document).ready(function() {
 
+    // displayCurrentCity()
+   
 
+// weather call function on click on submit button
     $(".btn").on("click", function() {
 
         let cityName = $(this).siblings('#searchbar').val();
@@ -131,6 +176,7 @@ $(document).ready(function() {
             weatherCall(cityName);
         });
         
+        // weather call function on the press of the enter key
     $("#searchbar").on("keypress", function(e) {
         if(e.key === 'Enter'){
             let cityName = $('#searchbar').val();
@@ -140,21 +186,23 @@ $(document).ready(function() {
 
     })
 
-// add a handler to save searched cities to local storage
+// add a handler to save searched cities to local storage on click 
     $(".btn").on("click", function(e) {
-    let cityName = $(this).siblings('#searchbar').val().trim();
+    let cityName = $(this).siblings('#searchbar').val();
     addCity(cityName)
-    
-   
-
-    
-    
-
     })
 
-    
-    
+    // add a handler to save searched cities to local storage on enter key pressed.
+    $("#searchbar").on("keypress", function(e) {
+        if(e.key === 'Enter'){
+        let cityName = $(this).siblings('#searchbar').val();
+        addCity(cityName)
+       
+        }
+        })
 
+        displayRecent()
+   
 
     console.log( "ready!" );
 });
