@@ -1,6 +1,6 @@
 
-var searchedCityList = [];
 
+// api call to open weather api which returns the current and 5 day weather data
 function weatherCall(cityName){
     const apiKey = "c9b09d7b9d02160b7088c80cf4c4911d";
     $('#current').empty()
@@ -26,7 +26,7 @@ function weatherCall(cityName){
            .then( data => 
                {
                     let weatherIcon = data.weather.icon
-                    console.log(weatherIcon)
+                    
         
               
      
@@ -92,72 +92,50 @@ function weatherCall(cityName){
          })
      }
 
-// using geolocation to retrieve the users lat/lon 
-// function displayCurrentCity(){
-    
-
-//     const success = (position) => { 
-//      const lat = position.coords.latitude
-//      const lon = position.coords.longitude
-
-//      fetch('https://api.openweathermap.org/data/2.5/weather?units=metric&lat=' + lat +  '&lon=' + lon + '&appid=c9b09d7b9d02160b7088c80cf4c4911d')
-//      .then(res => res.json())
-//      .then( data => 
-//          {
-//               let weatherIcon = data.weather.icon
-//               console.log(weatherIcon)
-  
-        
-
-//              let currentWeatherDiv = 
-//              '<p class="p" id="City">' + data.name +  '</p>'+
-//              '<img src="https://openweathermap.org/img/w/${data.weather[0].icon}.png"></img>'+
-//              '<p class="p" id="Date">' + dayjs.unix(data.dt).format('DD MM YYYY')  +'</p>'+
-//              '<p class="p"id="Temp">'+ "Temp: " + data.main.temp + " &deg;" + "C" +'</p>' +
-//              '<p class="p" id="Wind">'+ "Wind Speed: " + data.wind.speed + " KM/H" +'</p>' +
-//              '<p class="p" id="Humidity">'+ "Humidity: " + data.main.humidity + " %"+'</p>' 
-
-//              $("#current").append(currentWeatherDiv)
-//      })
-
-
-
-//       };
-      
-//       const error= (error) => {
-        
-//       };
-
-   
-//       navigator.geolocation.getCurrentPosition(success, error)
-      
-      
-     
-// }
 
 function displayRecent(){
     
-    for(let i = 0; i < localStorage.length; i++){
-        let savedCity = localStorage.getItem(localStorage.key(i))
-        let displaySaved ='<button type="submit" class="btn btn-primary btn-lg col-2">'+ savedCity +'</button>'
+    
+    let savedCity = JSON.parse(localStorage.getItem("city")) || [];
+
+
+    savedCity.forEach(savedCity => {
+
+    let displaySaved ='<button type="submit" id = "btn" class="btn btn-primary btn-lg col-2">'+ savedCity +'</button>'
         $("#Recent").append(displaySaved);
-    }
-        
-   
     
 
+       
+   });
+
+// function to weathercall when one of the recent saved buttons have been clicked
+   $(".btn").on("click", function() {
+
+    let cityName = $(this).text()
+
+        weatherCall(cityName);
+    });
+
+   
 }
+    
+
+
 
 function addCity(cityName){
     let cityExists = false;
-        for(let i = 0; i < localStorage.length; i ++){
-            if(cityName === localStorage.getItem(localStorage.key(i))){
+    let savedCity = JSON.parse(localStorage.getItem("city")) || [];
+    
+        for(let i = 0; i < savedCity.length; i ++){
+            if(cityName === savedCity[i]){
                 cityExists = true;
               break;
             } 
         } 
         if(!cityExists){
-            localStorage.setItem("city", cityName);
+            let searchedCityList = JSON.parse(localStorage.getItem("city")) || [];
+            searchedCityList.push(cityName)
+            localStorage.setItem("city", JSON.stringify(searchedCityList));
             let cityButton = '<button type="submit" class="btn btn-primary btn-lg col-2">'+ cityName +'</button>'
             $("#Recent").append(cityButton);
         }
@@ -171,7 +149,7 @@ $(document).ready(function() {
 // weather call function on click on submit button
     $(".btn").on("click", function() {
 
-        let cityName = $(this).siblings('#searchbar').val();
+        let cityName = $('#searchbar').val();
 
             weatherCall(cityName);
         });
@@ -195,7 +173,7 @@ $(document).ready(function() {
     // add a handler to save searched cities to local storage on enter key pressed.
     $("#searchbar").on("keypress", function(e) {
         if(e.key === 'Enter'){
-        let cityName = $(this).siblings('#searchbar').val();
+        let cityName = $(this).val()
         addCity(cityName)
        
         }

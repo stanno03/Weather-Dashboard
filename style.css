@@ -6,10 +6,35 @@ border: 5px, solid;
 }
 
 #current{
-    justify-content: flex-end;
+    justify-content: center
+}
+
+#currentContainer{
+    justify-content: center;
+    align-items: center;
+    padding-left: 40px;
+}
+
+#fiveday{
+    justify-content: space-between;
+    padding-top: 100px
 }
 
 #Recent{
     display: flex;
     flex-direction: column;
+}
+
+#navHeader{
+    padding-left: 200px;
+    padding-bottom: 25px;
+}
+
+header.h1{
+    padding-top: 20px;
+}
+
+
+#searchbar{
+    padding-left: 60px;   
 }

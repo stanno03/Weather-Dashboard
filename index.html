@@ -12,49 +12,52 @@
 </head>
 <main>
 <body>
-    <header><h1 class="text-center">Weather Dashboard</h1></header>
-
-    <div id="recent" class="col-2">
-      <p>Search for a City:</p>
-  <input type="text" placeholder="Type a city here..." id ="searchbar">
-  <input class="btn" type="submit" >
-  </div>
-
+    <header>
+      <nav class="navbar navbar-light" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+          <h1 id="navHeader" class="text-center">Weather Dashboard</h1>
+            <input class="rounded-pill" type="text" placeholder="  Type a city here..." aria-label="Search" id ="searchbar">
+            <button class="btn btn-outline-success rounded-pill" type="submit">Search</button>
+        </div>
+      </nav>
+    </header>
 
     <div class="container">
-        <div class="row">
-            <div id="current"  class="col-8">
+        <div id="currentContainer" class="row">
+            <div id="current" class="col-4">
                 
             </div>
            
           </div>
           
+          <div id="Recent" class="d-grid gap-2">
+
+          </div>
+
         <div id= "fiveday" class="row">
 
          
 
-        <div id= "dayOne" class="col-2">
+        <div id= "dayOne" class="row-2 border border-5 col-2">
             
         </div>
-        <div id= "dayTwo"class="col-2">
+        <div id= "dayTwo"class="row-2 border border-5 col-2">
             
         </div>
-          <div id= "dayThree"class="col-2">
+          <div id= "dayThree"class="row-2 border border-5 col-2">
             
         </div>
-          <div id= "dayFour"class="col-2">
+          <div id= "dayFour"class="row-2 border border-5 col-2">
             
         </div>
-          <div id= "dayFive"class="col-2">
+          <div id= "dayFive"class="row-2 border border-5 col-2">
             
           </div>
 
 
         </div>
       </div>
-      <div id="Recent">
-
-      </div>
+      
       
     
     
