@@ -1,40 +1,59 @@
-#fiveday {
-justify-content: flex-end;
-padding-left: 50px;
-border: 5px, solid;
-
-}
-
-#current{
-    justify-content: center
-}
-
-#currentContainer{
-    justify-content: center;
-    align-items: center;
-    padding-left: 40px;
-}
-
-#fiveday{
-    justify-content: space-between;
-    padding-top: 100px
-}
-
-#Recent{
-    display: flex;
-    flex-direction: column;
-}
 
 #navHeader{
-    padding-left: 200px;
-    padding-bottom: 25px;
-}
-
-header.h1{
+    display: flex;
+    justify-content: center;
+   flex-direction: row;
     padding-top: 20px;
 }
 
+header.h1{
+    flex: auto;
+}
+
+#search{
+    display: flex;
+    flex: auto;
+    align-items: center;
+    justify-content: center;
+}
 
 #searchbar{
     padding-left: 60px;   
 }
+
+.row{
+    justify-content: center;
+    padding-bottom: 30px;
+    padding-left: 50px;
+}
+
+#fiveday {
+justify-content: flex-end;
+padding-left: 50px;
+border: 5px, solid;
+justify-content: space-between;
+padding-top: 50px
+}
+
+#fiveDayContainer{
+    place-content: flex-end;
+}
+
+
+
+#current{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+#recent{
+    display: flex;
+    flex-direction: column;
+    
+}
+
+
