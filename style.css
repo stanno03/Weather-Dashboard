@@ -36,24 +36,26 @@ padding-top: 50px
 }
 
 #fiveDayContainer{
-    place-content: flex-end;
+    display: flex;
+    justify-content: flex-start;
 }
 
 
+#recentContainer{
+    padding-top: 20px;
+     
+ }
 
-#current{
+ #recent{
     display: flex;
     flex-direction: column;
-    justify-content: center;
+ }
+
+h3{
+    display: flex;
+    align-content: center;
     align-items: center;
-}
-
-
-
-#recent{
-    display: flex;
-    flex-direction: column;
-    
+    justify-content: center;
 }
 
 

@@ -1,6 +1,5 @@
 
 
-// api call to open weather api which returns the current and 5 day weather data
 $(document).ready(function() {
 
     // displayCurrentCity()
@@ -11,15 +10,11 @@ $(document).ready(function() {
         e.preventDefault()
 
         let cityName = $('#searchbar').val();
+        weatherCall(cityName);
 
-        
-
-        
-
-            weatherCall(cityName);
         });
         
-        // weather call function on the press of the enter key
+    //   event handler for pressing enter in the searchbar which calls the weathercall  
     $("#searchbar").on("keypress", function(e) {
        
         if(e.key === 'Enter'){
@@ -31,25 +26,26 @@ $(document).ready(function() {
     })
 
 // add a handler to save searched cities to local storage on click 
-    $(".btn").on("click", function(e) {
-     e.preventDefault()
-    let cityName = $(this).siblings('#searchbar').val();
-    if(cityName == null){
-        return; 
-    }
+    // $(".btn").on("click", function(e) {
+    //  e.preventDefault()
+    // let cityName = $(this).siblings('#searchbar').val();
+    // if(cityName == null){
+    //     return; 
+    // }
 
-    addCity(cityName)
-    })
+
+    // addCity(cityName)
+    // })
 
     // add a handler to save searched cities to local storage on enter key pressed.
-    $("#searchbar").on("keypress", function(e) {
+    // $("#searchbar").on("keypress", function(e) {
         
-        if(e.key === 'Enter'){
-        let cityName = $(this).val()
-        addCity(cityName)
+    //     if(e.key === 'Enter'){
+    //     let cityName = $(this).val()
+    //     // addCity(cityName)
        
-        }
-        })
+    //     }
+    //     })
 
        
 
@@ -80,7 +76,7 @@ $(document).ready(function() {
         
             savedCity.forEach(savedCity => {
         
-            let displaySaved ='<button type="submit" id = "btn" class="btn btn-primary btn-lg col-2">'+ savedCity +'</button>'
+            let displaySaved ='<button type="submit" id = "btn" class="recentBtn btn btn-primary btn-lg col-6">'+ savedCity +'</button>'
                 $("#recent").append(displaySaved);
             
         
@@ -88,7 +84,7 @@ $(document).ready(function() {
            });
         
         // function to weathercall when one of the recent saved buttons have been clicked
-           $(".btn").on("click", function(e) {
+           $(".recentBtn").on("click", function(e) {
             e.preventDefault()
             let cityName = $(this).text()
             if(cityName == null){
@@ -102,6 +98,7 @@ $(document).ready(function() {
 
         function weatherCall(cityName){
             const apiKey = "c9b09d7b9d02160b7088c80cf4c4911d";
+            // clear all divs 
             $('#current').empty()
             $('#dayOne').empty()
             $('#dayTwo').empty()
@@ -139,6 +136,8 @@ $(document).ready(function() {
         
                            $("#current").append(currentWeatherDiv)
                    })
+                   //add the city to saved searches    
+                   addCity(cityName)
                    // make api call with lon and lat for the 5 day forecast
                    fetch('https://api.openweathermap.org/data/2.5/forecast?units=metric&lat=' + lat +  '&lon=' + lon + '&appid=c9b09d7b9d02160b7088c80cf4c4911d')
                    .then(res => res.json())
