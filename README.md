@@ -12,6 +12,8 @@ Simply naviagate the weather app URL which is deployed live via Git Hub pages. Y
 saved to local storage and will display should you leave the page. 
 
 ## Mock Up
-
+![Weather Dashnboard](./assests/pictures/weatherDashboard.PNG)
 
 ## Links
+Repository - https://github.com/stanno03/Weather-Dashboard
+Github Pages - https://stanno03.github.io/Weather-Dashboard/
