@@ -2,6 +2,8 @@
 
 $(document).ready(function() {
 
+
+    // call the displayCurrentCity function and use geolocation to get the location of the user.
     // displayCurrentCity()
    
 
@@ -9,7 +11,7 @@ $(document).ready(function() {
     $(".btn").on("click", function(e) {
         e.preventDefault()
 
-        let cityName = $('#searchbar').val();
+        let cityName = $('#searchbar').val().toLowerCase();
         weatherCall(cityName);
 
         });
@@ -18,7 +20,7 @@ $(document).ready(function() {
     $("#searchbar").on("keypress", function(e) {
        
         if(e.key === 'Enter'){
-            let cityName = $('#searchbar').val();
+            let cityName = $('#searchbar').val().toLowerCase();
             weatherCall(cityName)
         }
 
@@ -48,7 +50,7 @@ $(document).ready(function() {
     //     })
 
        
-
+        // function to add a city to local storage
         function addCity(cityName){
             let cityExists = false;
             let savedCity = JSON.parse(localStorage.getItem("city")) || [];
@@ -67,7 +69,7 @@ $(document).ready(function() {
                     $("#Recent").append(cityButton);
                 }
         }
-
+        //function to display cities saved in local storage 
         function displayRecent(){
     
     
@@ -79,14 +81,12 @@ $(document).ready(function() {
             let displaySaved ='<button type="submit" id = "btn" class="recentBtn btn btn-primary btn-lg col-6">'+ savedCity +'</button>'
                 $("#recent").append(displaySaved);
             
-        
-               
            });
         
         // function to weathercall when one of the recent saved buttons have been clicked
            $(".recentBtn").on("click", function(e) {
             e.preventDefault()
-            let cityName = $(this).text()
+            let cityName = $(this).text().toLowerCase();
             if(cityName == null){
                 return; 
             }
@@ -96,6 +96,7 @@ $(document).ready(function() {
            
         }
 
+        // api call to the open weather api. Does both the current and 5 day get requests in one function.
         function weatherCall(cityName){
             const apiKey = "c9b09d7b9d02160b7088c80cf4c4911d";
             // clear all divs 
@@ -136,7 +137,7 @@ $(document).ready(function() {
         
                            $("#current").append(currentWeatherDiv)
                    })
-                   //add the city to saved searches    
+                   //call the addCity function to add city to saved searches    
                    addCity(cityName)
                    // make api call with lon and lat for the 5 day forecast
                    fetch('https://api.openweathermap.org/data/2.5/forecast?units=metric&lat=' + lat +  '&lon=' + lon + '&appid=c9b09d7b9d02160b7088c80cf4c4911d')
@@ -205,6 +206,7 @@ $(document).ready(function() {
                  })
              }
 
+            //  call the display recent function to display cities saved in local storage
              displayRecent()
             
 
